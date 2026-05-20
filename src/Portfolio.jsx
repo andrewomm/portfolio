@@ -621,13 +621,12 @@ const styles = `
     position: relative;
     border-radius: 46px;
     background: linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 40%, #2c2c2e 70%, #3a3a3c 100%);
-    padding: 12px;
+    padding: 0;
     box-shadow:
-      0 0 0 1px rgba(255,255,255,0.18),
-      inset 0 0 0 1px rgba(0,0,0,0.6),
-      0 40px 100px rgba(0,0,0,0.8),
-      0 12px 32px rgba(0,0,0,0.6),
-      0 2px 8px rgba(0,0,0,0.4);
+      0 0 0 1.5px rgba(255,255,255,0.15),
+      inset 0 0 0 1px rgba(0,0,0,0.5),
+      0 40px 100px rgba(0,0,0,0.85),
+      0 12px 32px rgba(0,0,0,0.6);
   }
   .phone-mockup:nth-child(2) .phone-shell { width: 212px; }
 
@@ -641,7 +640,7 @@ const styles = `
     height: 22px;
     background: linear-gradient(to right, #2a2a2c, #3a3a3c);
     border-radius: 2px 0 0 2px;
-    box-shadow: 0 30px 0 #2a2a2c, 0 60px 0 #2a2a2c, 0 60px 0 #2a2a2c;
+    box-shadow: 0 30px 0 #2a2a2c, 0 60px 0 #2a2a2c;
   }
   /* right power button */
   .phone-shell::after {
@@ -655,10 +654,10 @@ const styles = `
     border-radius: 0 2px 2px 0;
   }
 
-  /* inner glass screen */
+  /* inner glass screen — edge to edge, radius matches shell */
   .phone-screen {
     background: #000;
-    border-radius: 36px;
+    border-radius: 46px;
     overflow: hidden;
     position: relative;
   }
@@ -672,20 +671,23 @@ const styles = `
     display: block;
   }
 
-  /* home indicator bar */
+  /* home indicator — overlaid on top of screenshot */
   .phone-indicator {
-    height: 22px;
+    position: absolute;
+    bottom: 6px;
+    left: 0; right: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: inherit;
+    pointer-events: none;
+    z-index: 5;
   }
   .phone-indicator::after {
     content: '';
     display: block;
-    width: 34%;
+    width: 30%;
     height: 4px;
-    background: rgba(255,255,255,0.25);
+    background: rgba(0,0,0,0.35);
     border-radius: 10px;
   }
 
@@ -846,8 +848,8 @@ const styles = `
       gap: 0.75rem;
       overflow: visible;
     }
-    .phone-shell { width: 104px; border-radius: 26px; padding: 7px; }
-    .phone-screen { border-radius: 21px; }
+    .phone-shell { width: 104px; border-radius: 26px; }
+    .phone-screen { border-radius: 26px; }
     .phone-indicator { height: 14px; }
     .phone-mockup:nth-child(2) .phone-shell { width: 118px; }
     .phone-mockup:nth-child(1) { transform: rotate(-5deg) translateY(14px); }
@@ -881,8 +883,8 @@ const styles = `
     .hero-stats { gap: 1.2rem 0.8rem; }
     .hero-title { font-size: clamp(2.8rem, 16vw, 4.5rem); }
     .phone-strip { padding: 1.5rem 0.3rem 1.5rem; overflow: visible; gap: 0.5rem; }
-    .phone-shell { width: 86px; border-radius: 22px; padding: 6px; }
-    .phone-screen { border-radius: 18px; }
+    .phone-shell { width: 86px; border-radius: 22px; }
+    .phone-screen { border-radius: 22px; }
     .phone-indicator { height: 13px; }
     .phone-mockup:nth-child(2) .phone-shell { width: 98px; }
     .contact-link-val { font-size: 0.75rem; word-break: break-all; }
@@ -891,8 +893,8 @@ const styles = `
 
   @media (max-width: 360px) {
     .hero-title { font-size: clamp(2.4rem, 18vw, 3.5rem); }
-    .phone-shell { width: 74px; border-radius: 19px; padding: 5px; }
-    .phone-screen { border-radius: 15px; }
+    .phone-shell { width: 74px; border-radius: 19px; }
+    .phone-screen { border-radius: 19px; }
     .phone-mockup:nth-child(2) .phone-shell { width: 84px; }
     .phone-indicator { height: 11px; }
     .skills-grid { grid-template-columns: 1fr; }
