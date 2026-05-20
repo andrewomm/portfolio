@@ -941,7 +941,7 @@ const featuredProject = {
   num: '01',
   title: 'GameVibe',
   tagline: 'Find your Crowd. Find your Spot.',
-  desc: 'A free iOS app for football fans in the GTA. Shows 90+ bars and pubs across Toronto, Mississauga, Brampton, and beyond — sorted by crowd, vibe, and neighbourhood — so you always know the right place to watch every match. Set your team, find your bar, get directions in one tap. Live scores for all 104 World Cup 2026 matches included.',
+  desc: 'Live on the App Store. A free iOS app built for the 2026 World Cup that helps GTA fans find the right bar, the right crowd, and the right seat for every match. 90+ venues across Toronto, Mississauga, and Brampton — filterable by vibe, crowd type, and neighbourhood. Set your team, get directions in one tap. Live scores for all 104 matches included. Built solo from concept to App Store submission.',
   tags: ['React Native', 'Firebase', 'Geolocation', 'Maps API', 'UX Design'],
   images: ['/images/gamevibe-1.PNG', '/images/gamevibe-2.PNG', '/images/gamevibe-3.PNG'],
   appStore: 'https://apps.apple.com/app/gamevibe',
@@ -953,7 +953,7 @@ const projects = [
     num: '02',
     title: 'ScanWise',
     tagline: 'Scan it. Grade it. Know what you\'re eating.',
-    desc: 'AI-powered nutrition barcode scanner. Scan any product, get a live nutrition breakdown, and receive a custom health grade based on macros, additives, and caloric density. Built with React Native and the Open Food Facts API.',
+    desc: 'AI-powered nutrition scanner built with React Native. Point your camera at any barcode and get an instant health grade based on a custom algorithm weighing macros, additives, and caloric density against your goals. Pulls live data from the Open Food Facts API. Designed, built, and tested end-to-end as a solo project.',
     tags: ['React Native', 'Expo', 'Open Food Facts API', 'Custom Algorithm', 'Git'],
     images: ['/images/Scanwise-1.png', '/images/Scanwise-2.png', '/images/Scanwise-3.png'],
     href: 'https://github.com/andrewomm',
@@ -1190,14 +1190,13 @@ export default function Portfolio() {
       <section className="hero" id="hero">
         <p className="hero-eyebrow">// Seeking Winter 2027 Co-op · Toronto, Canada</p>
         <h1 className="hero-title">
-          <span className="hero-title-line"><span className="hero-title-inner">BUILDING</span></span>
-          <span className="hero-title-line"><span className="hero-title-inner">AI THAT</span></span>
-          <span className="hero-title-line"><span className="hero-title-inner">WORKS</span></span>
+          <span className="hero-title-line"><span className="hero-title-inner">AI DEVELOPER.</span></span>
+          <span className="hero-title-line"><span className="hero-title-inner">INTERACTION</span></span>
+          <span className="hero-title-line"><span className="hero-title-inner">DESIGNER.</span></span>
         </h1>
         <p className="hero-sub">
-          I'm Andrew, an AI/ML developer and interaction designer at George Brown College.
-          Former personal trainer and real estate pro turned builder. I ship real apps,
-          not demos. Seeking co-op Winter 2027 in Toronto.
+          Andrew Makhijani. I build AI-powered apps and design the interfaces people actually use.
+          One app live on the App Store. Seeking Winter 2027 co-op in Toronto.
         </p>
         <div className="hero-cta">
           <a href="#projects" className="btn-primary"><span>View My Work</span></a>
@@ -1205,10 +1204,10 @@ export default function Portfolio() {
         </div>
         <div className="hero-stats">
           {[
-            { num: 3, suffix: '+', label: 'Projects Built' },
-            { num: 5, suffix: '+', label: 'Years in Industry' },
-            { num: 2, suffix: '', label: 'Disciplines Merged' },
-            { num: 1, suffix: '', label: 'Pivot Story' },
+            { num: 2, suffix: '', label: 'Apps Shipped' },
+            { num: 6, suffix: '+', label: 'Frameworks' },
+            { num: 4, suffix: '', label: 'Years of Industry Exp.' },
+            { num: 1, suffix: '', label: 'App on the App Store' },
           ].map((s) => (
             <div key={s.label}>
               <div className="stat-num"><AnimatedNumber target={s.num} />{s.suffix}</div>
@@ -1232,10 +1231,10 @@ export default function Portfolio() {
         </h2>
         <div className="about-grid">
           <div className="about-text reveal" ref={addReveal}>
-            <p>I spent years <strong>coaching athletes and designing fitness programs</strong>, work that's fundamentally about reading people, building systems, and iterating until something works. That's exactly how I build software now.</p>
-            <p>I'm in the <strong>Applied AI Solutions postgrad program at George Brown College</strong>, where I've built computer vision tools, React Native apps, and ML pipelines. I care about making AI that's actually usable and not just technically functional.</p>
-            <p>My background in <strong>real estate presentation design and UX</strong> means I think about how things look and feel as much as how they work under the hood. That combination is rare and I lean into it.</p>
-            <p>I'm currently seeking a <strong>Winter 2027 co-op</strong> in AI/ML engineering, full-stack development, or product. Ideally somewhere building something that didn't exist before.</p>
+            <p>I came up coaching athletes and coordinating large-scale real estate presentations at <strong>Avison Young</strong>. Both taught me the same thing: systems thinking, reading people fast, and iterating until something actually works.</p>
+            <p>Now I'm in the <strong>Applied AI Solutions postgrad at George Brown College</strong> applying that same approach to software. I've shipped a live iOS app, built ML pipelines, trained computer vision models, and designed the full user experience from wireframe to App Store.</p>
+            <p>I don't just write code. I understand <strong>why something should be built, how it should feel to use, and how to get it out the door</strong>. That combination is rare at the junior level and I know it.</p>
+            <p>Looking for a <strong>Winter 2027 co-op</strong> where I can work on real problems with a team that moves fast. Toronto preferred, open to remote.</p>
           </div>
           <div className="timeline">
             {timeline.map((item, i) => (
@@ -1371,9 +1370,9 @@ export default function Portfolio() {
         </h2>
         <div className="contact-inner reveal" ref={addReveal}>
           <p>
-            I'm actively seeking co-op placements and entry-level opportunities in AI/ML,
-            full-stack, or product design. If you're building something interesting or have
-            a role that fits, I'd love to hear from you.
+            Actively seeking a <strong>Winter 2027 co-op</strong> in AI/ML, full-stack development, or product.
+            I'm available January 2027 and ready to contribute from day one.
+            If you have a role or just want to talk, my inbox is open.
           </p>
           <div className="contact-links">
             {[
