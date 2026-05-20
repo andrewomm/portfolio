@@ -663,18 +663,8 @@ const styles = `
     position: relative;
   }
 
-  /* Dynamic Island — pill shape */
-  .phone-island {
-    position: absolute;
-    top: 11px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 24px;
-    background: #000;
-    border-radius: 50px;
-    z-index: 10;
-  }
+  /* No Dynamic Island overlay — screenshots already include it */
+  .phone-island { display: none; }
 
   .phone-screen img {
     width: 100%;
@@ -858,7 +848,6 @@ const styles = `
     }
     .phone-shell { width: 104px; border-radius: 26px; padding: 7px; }
     .phone-screen { border-radius: 21px; }
-    .phone-island { width: 44px; height: 14px; top: 7px; border-radius: 20px; }
     .phone-indicator { height: 14px; }
     .phone-mockup:nth-child(2) .phone-shell { width: 118px; }
     .phone-mockup:nth-child(1) { transform: rotate(-5deg) translateY(14px); }
@@ -894,7 +883,6 @@ const styles = `
     .phone-strip { padding: 1.5rem 0.3rem 1.5rem; overflow: visible; gap: 0.5rem; }
     .phone-shell { width: 86px; border-radius: 22px; padding: 6px; }
     .phone-screen { border-radius: 18px; }
-    .phone-island { width: 38px; height: 12px; top: 6px; border-radius: 20px; }
     .phone-indicator { height: 13px; }
     .phone-mockup:nth-child(2) .phone-shell { width: 98px; }
     .contact-link-val { font-size: 0.75rem; word-break: break-all; }
@@ -906,7 +894,6 @@ const styles = `
     .phone-shell { width: 74px; border-radius: 19px; padding: 5px; }
     .phone-screen { border-radius: 15px; }
     .phone-mockup:nth-child(2) .phone-shell { width: 84px; }
-    .phone-island { width: 32px; height: 10px; top: 5px; border-radius: 20px; }
     .phone-indicator { height: 11px; }
     .skills-grid { grid-template-columns: 1fr; }
   }
@@ -1273,7 +1260,6 @@ export default function Portfolio() {
                 <div className="phone-mockup" key={i}>
                   <div className="phone-shell">
                     <div className="phone-screen">
-                      <div className="phone-island" />
                       <img src={src} alt={`GameVibe screen ${i + 1}`} />
                       <div className="phone-indicator" />
                     </div>
@@ -1309,7 +1295,6 @@ export default function Portfolio() {
                       <div className="phone-mockup" key={j}>
                         <div className="phone-shell">
                           <div className="phone-screen">
-                            <div className="phone-island" />
                             <img src={src} alt={`${p.title} screen ${j + 1}`} />
                             <div className="phone-indicator" />
                           </div>
