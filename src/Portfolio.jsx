@@ -617,9 +617,9 @@ const styles = `
 
   /* titanium outer frame */
   .phone-shell {
-    width: 190px;
+    width: 225px;
     position: relative;
-    border-radius: 46px;
+    border-radius: 50px;
     background: linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 40%, #2c2c2e 70%, #3a3a3c 100%);
     padding: 0;
     box-shadow:
@@ -628,7 +628,7 @@ const styles = `
       0 40px 100px rgba(0,0,0,0.85),
       0 12px 32px rgba(0,0,0,0.6);
   }
-  .phone-mockup:nth-child(2) .phone-shell { width: 212px; }
+  .phone-mockup:nth-child(2) .phone-shell { width: 250px; border-radius: 52px; }
 
   /* left buttons: silent + volume */
   .phone-shell::before {
@@ -657,10 +657,11 @@ const styles = `
   /* inner glass screen — edge to edge, radius matches shell */
   .phone-screen {
     background: #000;
-    border-radius: 46px;
+    border-radius: 50px;
     overflow: hidden;
     position: relative;
   }
+  .phone-mockup:nth-child(2) .phone-screen { border-radius: 52px; }
 
   /* No Dynamic Island overlay — screenshots already include it */
   .phone-island { display: none; }
@@ -693,7 +694,7 @@ const styles = `
 
   .project-body { padding: 2.2rem; display: flex; flex-direction: column; gap: 1rem; }
   .project-num { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; color: var(--text3); }
-  .project-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.04em; color: var(--white); line-height: 1.05; }
+  .project-title { font-family: var(--font-display); font-size: 2rem; letter-spacing: 0.01em; color: var(--white); line-height: 1.05; }
   .project-tagline { font-family: var(--font-mono); font-size: 0.7rem; color: var(--accent2); letter-spacing: 0.08em; margin-top: 0.2rem; }
   .project-desc { font-size: 0.88rem; color: var(--text2); line-height: 1.75; }
   .project-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
@@ -914,7 +915,7 @@ const marqueeItems = [
   { text: '✦', accent: true },
   { text: 'Toronto, Canada', accent: false },
   { text: '✦', accent: true },
-  { text: 'Open to Co-op', accent: false },
+  { text: 'Seeking Winter 2027 Co-op', accent: false },
   { text: '✦', accent: true },
   { text: 'From Training Bodies to Training Models', accent: false },
   { text: '✦', accent: true },
@@ -1178,7 +1179,7 @@ export default function Portfolio() {
 
       {/* Hero */}
       <section className="hero" id="hero">
-        <p className="hero-eyebrow">// Available for Co-op · Toronto, Canada</p>
+        <p className="hero-eyebrow">// Seeking Winter 2027 Co-op · Toronto, Canada</p>
         <h1 className="hero-title">
           <span className="hero-title-line"><span className="hero-title-inner">BUILDING</span></span>
           <span className="hero-title-line"><span className="hero-title-inner">AI THAT</span></span>
@@ -1187,7 +1188,7 @@ export default function Portfolio() {
         <p className="hero-sub">
           I'm Andrew, an AI/ML developer and interaction designer at George Brown College.
           Former personal trainer and real estate pro turned builder. I ship real apps,
-          not demos. Seeking co-op Fall 2026 in Toronto.
+          not demos. Seeking co-op Winter 2027 in Toronto.
         </p>
         <div className="hero-cta">
           <a href="#projects" className="btn-primary"><span>View My Work</span></a>
@@ -1225,7 +1226,7 @@ export default function Portfolio() {
             <p>I spent years <strong>coaching athletes and designing fitness programs</strong>, work that's fundamentally about reading people, building systems, and iterating until something works. That's exactly how I build software now.</p>
             <p>I'm in the <strong>Applied AI Solutions postgrad program at George Brown College</strong>, where I've built computer vision tools, React Native apps, and ML pipelines. I care about making AI that's actually usable and not just technically functional.</p>
             <p>My background in <strong>real estate presentation design and UX</strong> means I think about how things look and feel as much as how they work under the hood. That combination is rare and I lean into it.</p>
-            <p>I'm currently seeking a <strong>Fall 2026 co-op</strong> in AI/ML engineering, full-stack development, or product. Ideally somewhere building something that didn't exist before.</p>
+            <p>I'm currently seeking a <strong>Winter 2027 co-op</strong> in AI/ML engineering, full-stack development, or product. Ideally somewhere building something that didn't exist before.</p>
           </div>
           <div className="timeline">
             {timeline.map((item, i) => (
@@ -1386,7 +1387,7 @@ export default function Portfolio() {
       {/* Footer */}
       <footer>
         <p className="footer-copy">© 2026 <span>Andrew Makhijani</span>. Built with React + Vite.</p>
-        <p className="footer-copy">Toronto, Canada · <span>Open to Co-op</span></p>
+        <p className="footer-copy">Toronto, Canada · <span>Seeking Winter 2027 Co-op</span></p>
       </footer>
 
       {/* Marquee */}
