@@ -1204,10 +1204,10 @@ export default function Portfolio() {
         </div>
         <div className="hero-stats">
           {[
-            { num: 2, suffix: '', label: 'Apps Shipped' },
-            { num: 6, suffix: '+', label: 'Frameworks' },
-            { num: 4, suffix: '', label: 'Years of Industry Exp.' },
             { num: 1, suffix: '', label: 'App on the App Store' },
+            { num: 2, suffix: '', label: 'Apps Shipped' },
+            { num: 6, suffix: '+', label: 'Frameworks & Tools' },
+            { num: 5, suffix: '+', label: 'Years Work Experience' },
           ].map((s) => (
             <div key={s.label}>
               <div className="stat-num"><AnimatedNumber target={s.num} />{s.suffix}</div>
