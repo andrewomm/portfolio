@@ -191,6 +191,8 @@ const styles = `
   }
   .nav-links a:hover { color: var(--white); }
   .nav-links a:hover::after { width: 100%; }
+  .nav-links a.active { color: var(--white); }
+  .nav-links a.active::after { width: 100%; }
   .btn-resume-nav {
     font-family: var(--font-mono);
     font-size: 0.68rem;
@@ -209,6 +211,68 @@ const styles = `
     background: rgba(123,156,191,0.08);
   }
   .btn-resume-nav::after { display: none !important; }
+
+  /* ── MOBILE NAV ── */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 200;
+  }
+  .hamburger span {
+    display: block;
+    width: 22px;
+    height: 1.5px;
+    background: var(--text);
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; }
+  .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+  .mobile-menu {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 150;
+    background: rgba(11,15,26,0.97);
+    backdrop-filter: blur(20px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+  .mobile-menu.open { opacity: 1; pointer-events: all; }
+  .mobile-menu a {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    letter-spacing: 0.06em;
+    color: var(--text2);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .mobile-menu a:hover { color: var(--white); }
+  .mobile-menu-resume {
+    font-family: var(--font-mono) !important;
+    font-size: 0.75rem !important;
+    letter-spacing: 0.16em !important;
+    color: var(--accent2) !important;
+    border: 1px solid var(--border2);
+    padding: 0.6rem 1.4rem;
+    margin-top: 1rem;
+  }
+
+  @media (max-width: 768px) {
+    .hamburger { display: flex; }
+    .mobile-menu { display: flex; }
+  }
 
   /* ── MARQUEE ── */
   .marquee-wrap {
@@ -355,7 +419,7 @@ const styles = `
     background: var(--accent);
     border: none;
     padding: 0.9rem 2.2rem;
-    cursor: none;
+    cursor: pointer;
     text-decoration: none;
     display: inline-block;
     position: relative;
@@ -382,7 +446,7 @@ const styles = `
     background: transparent;
     border: 1px solid var(--border2);
     padding: 0.9rem 2.2rem;
-    cursor: none;
+    cursor: pointer;
     text-decoration: none;
     display: inline-block;
     transition: color 0.25s, border-color 0.25s, background 0.25s;
@@ -463,7 +527,7 @@ const styles = `
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 5rem;
+    gap: 3rem;
     align-items: start;
   }
   .about-text p {
@@ -521,41 +585,120 @@ const styles = `
   .phone-strip {
     width: 100%;
     background: #060a12;
-    padding: 3rem 2rem 0;
+    padding: 3.5rem 2rem 3rem;
     display: flex;
-    gap: 1.2rem;
+    gap: 2rem;
     align-items: flex-end;
     justify-content: center;
-    overflow: hidden;
+    overflow: visible;
     border-bottom: 1px solid var(--border);
     position: relative;
-    min-height: 380px;
   }
   .phone-strip::before {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse at 50% 100%, rgba(59,95,160,0.22) 0%, transparent 70%);
+    background: radial-gradient(ellipse at 50% 90%, rgba(59,95,160,0.22) 0%, transparent 65%);
     pointer-events: none;
   }
-  .phone-frame {
-    flex: 1;
-    max-width: 240px;
-    min-width: 0;
-    border-radius: 26px;
-    border: 2px solid rgba(255,255,255,0.12);
-    overflow: hidden;
-    background: #000;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
-    transition: transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94);
+
+  /* ── PHONE MOCKUP SHELL ── */
+  .phone-mockup {
+    flex-shrink: 0;
+    position: relative;
+    transition: transform 0.45s cubic-bezier(0.25,0.46,0.45,0.94);
   }
-  .phone-frame:nth-child(1) { transform: rotate(-3deg) translateY(20px); }
-  .phone-frame:nth-child(2) { transform: rotate(0deg) translateY(0); max-width: 260px; }
-  .phone-frame:nth-child(3) { transform: rotate(3deg) translateY(20px); }
-  .phone-strip:hover .phone-frame:nth-child(1) { transform: rotate(-1.5deg) translateY(10px) scale(1.02); }
-  .phone-strip:hover .phone-frame:nth-child(2) { transform: rotate(0deg) translateY(-10px) scale(1.03); }
-  .phone-strip:hover .phone-frame:nth-child(3) { transform: rotate(1.5deg) translateY(10px) scale(1.02); }
-  .phone-frame img { width: 100%; display: block; }
+  .phone-mockup:nth-child(1) { transform: rotate(-5deg) translateY(22px); }
+  .phone-mockup:nth-child(2) { transform: rotate(0deg) translateY(0); }
+  .phone-mockup:nth-child(3) { transform: rotate(5deg) translateY(22px); }
+  .phone-strip:hover .phone-mockup:nth-child(1) { transform: rotate(-2.5deg) translateY(10px) scale(1.02); }
+  .phone-strip:hover .phone-mockup:nth-child(2) { transform: rotate(0deg) translateY(-12px) scale(1.04); }
+  .phone-strip:hover .phone-mockup:nth-child(3) { transform: rotate(2.5deg) translateY(10px) scale(1.02); }
+
+  /* outer shell */
+  .phone-shell {
+    width: 195px;
+    background: #1a1a1c;
+    border-radius: 44px;
+    padding: 10px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.14),
+      0 0 0 2px rgba(0,0,0,0.8),
+      inset 0 0 0 1px rgba(255,255,255,0.06),
+      0 32px 80px rgba(0,0,0,0.75),
+      0 8px 24px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .phone-mockup:nth-child(2) .phone-shell { width: 215px; }
+
+  /* side buttons */
+  .phone-shell::before {
+    content: '';
+    position: absolute;
+    left: -3px;
+    top: 80px;
+    width: 3px;
+    height: 28px;
+    background: #2a2a2c;
+    border-radius: 2px 0 0 2px;
+    box-shadow: 0 36px 0 #2a2a2c, 0 68px 0 #2a2a2c;
+  }
+  .phone-shell::after {
+    content: '';
+    position: absolute;
+    right: -3px;
+    top: 100px;
+    width: 3px;
+    height: 50px;
+    background: #2a2a2c;
+    border-radius: 0 2px 2px 0;
+  }
+
+  /* screen bezel */
+  .phone-screen {
+    background: #000;
+    border-radius: 36px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* dynamic island */
+  .phone-island {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 88px;
+    height: 26px;
+    background: #000;
+    border-radius: 20px;
+    z-index: 10;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+  }
+
+  .phone-screen img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* home indicator */
+  .phone-indicator {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+  }
+  .phone-indicator::after {
+    content: '';
+    display: block;
+    width: 38%;
+    height: 4px;
+    background: rgba(255,255,255,0.22);
+    border-radius: 10px;
+  }
 
   .project-body { padding: 2.2rem; display: flex; flex-direction: column; gap: 1rem; }
   .project-num { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.18em; color: var(--text3); }
@@ -670,22 +813,102 @@ const styles = `
   /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .skills-grid { grid-template-columns: 1fr 1fr; }
+    .hero-title { font-size: clamp(3.5rem, 10vw, 8rem); }
   }
+
   @media (max-width: 768px) {
-    .nav { padding: 0 1.5rem; }
+    body { cursor: auto; }
+    .cursor-dot { display: none; }
+
+    .nav { padding: 0 1.2rem; height: 56px; }
     .nav-links { display: none; }
-    section { padding: 3.5rem 1.5rem; }
-    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .nav-logo { font-size: 1.3rem; }
+
+    section { padding: 3rem 1.2rem; }
+
+    .hero {
+      padding-top: 56px;
+      padding-bottom: 60px;
+      padding-left: 1.2rem;
+      padding-right: 1.2rem;
+      min-height: 100svh;
+    }
+    .hero-eyebrow { font-size: 0.6rem; margin-bottom: 1.2rem; }
+    .hero-title { font-size: clamp(3rem, 14vw, 5.5rem); line-height: 0.88; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: 0.9rem; margin-bottom: 2rem; max-width: 100%; }
+    .hero-cta { flex-direction: column; gap: 0.75rem; }
+    .btn-primary, .btn-ghost { padding: 0.85rem 1.5rem; font-size: 0.68rem; text-align: center; }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem 1rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+    }
+    .stat-num { font-size: 2.2rem; }
+    .stat-label { font-size: 0.55rem; }
+    .scroll-indicator { display: none; }
+
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    h2.section-title { font-size: clamp(2.5rem, 10vw, 4rem); }
+
+    .phone-strip {
+      padding: 2rem 0.5rem 2rem;
+      gap: 0.75rem;
+      overflow: visible;
+    }
+    .phone-shell { width: 100px; border-radius: 24px; padding: 6px; }
+    .phone-screen { border-radius: 20px; }
+    .phone-island { width: 50px; height: 16px; top: 6px; }
+    .phone-indicator { height: 16px; }
+    .phone-mockup:nth-child(2) .phone-shell { width: 114px; }
+    .phone-mockup:nth-child(1) { transform: rotate(-5deg) translateY(14px); }
+    .phone-mockup:nth-child(2) { transform: rotate(0deg) translateY(0); }
+    .phone-mockup:nth-child(3) { transform: rotate(5deg) translateY(14px); }
+
+    .project-body { padding: 1.5rem; gap: 0.85rem; }
+    .project-title { font-size: 1.6rem; }
+    .project-desc { font-size: 0.84rem; }
+
     .projects-secondary { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr 1fr; }
-    footer { padding: 2rem 1.5rem 4rem; }
-    .phone-frame { width: 120px; }
-    .phone-strip { padding: 2rem 1.2rem 1rem; gap: 0.8rem; }
-    .scroll-indicator { display: none; }
+    .skill-group { padding: 1.4rem; }
+
+    .contact-link { padding: 1.2rem 1.2rem; }
+    .contact-link-val { font-size: 0.82rem; }
+
+    footer {
+      padding: 1.5rem 1.2rem 5rem;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.5rem;
+    }
+
+    .marquee-wrap { height: 30px; }
+    .marquee-track span { font-size: 0.55rem; padding: 0 1.5rem; }
   }
+
   @media (max-width: 480px) {
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .hero-stats { gap: 1.2rem 0.8rem; }
+    .hero-title { font-size: clamp(2.8rem, 16vw, 4.5rem); }
+    .phone-strip { padding: 1.5rem 0.3rem 1.5rem; overflow: visible; gap: 0.5rem; }
+    .phone-shell { width: 84px; border-radius: 20px; padding: 5px; }
+    .phone-screen { border-radius: 16px; }
+    .phone-island { width: 42px; height: 13px; top: 5px; }
+    .phone-indicator { height: 14px; }
+    .phone-mockup:nth-child(2) .phone-shell { width: 96px; }
+    .contact-link-val { font-size: 0.75rem; word-break: break-all; }
+    .project-title { font-size: 1.4rem; }
+  }
+
+  @media (max-width: 360px) {
+    .hero-title { font-size: clamp(2.4rem, 18vw, 3.5rem); }
+    .phone-shell { width: 72px; border-radius: 18px; padding: 4px; }
+    .phone-mockup:nth-child(2) .phone-shell { width: 82px; }
+    .phone-island { width: 36px; height: 11px; }
+    .phone-indicator { height: 12px; }
     .skills-grid { grid-template-columns: 1fr; }
-    .hero-stats { gap: 2rem; }
   }
 `
 
@@ -773,6 +996,8 @@ function AnimatedNumber({ target }) {
 export default function Portfolio() {
   const [loaded, setLoaded] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [activeSection, setActiveSection] = useState('hero')
   const cursorDot = useRef(null)
   const rafRef = useRef(null)
   const revealRefs = useRef([])
@@ -805,12 +1030,37 @@ export default function Portfolio() {
     return () => window.removeEventListener('mousemove', move)
   }, [loaded])
 
-  // Scroll detection
+  // Scroll detection + active section tracking
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll)
+    const sections = ['hero', 'about', 'projects', 'skills', 'contact']
+    const onScroll = () => {
+      setScrolled(window.scrollY > 40)
+      // find which section is in view
+      let current = 'hero'
+      sections.forEach(id => {
+        const el = document.getElementById(id)
+        if (el && window.scrollY >= el.offsetTop - 120) current = id
+      })
+      setActiveSection(current)
+    }
+    window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
+
+  // Close mobile menu on outside tap
+  useEffect(() => {
+    const handler = (e) => {
+      if (menuOpen && !e.target.closest('.mobile-menu') && !e.target.closest('.hamburger')) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('touchstart', handler)
+    document.addEventListener('mousedown', handler)
+    return () => {
+      document.removeEventListener('touchstart', handler)
+      document.removeEventListener('mousedown', handler)
+    }
+  }, [menuOpen])
 
   // IntersectionObserver for reveals
   useEffect(() => {
@@ -906,12 +1156,24 @@ export default function Portfolio() {
       {/* Cursor */}
       <div className="cursor-dot" ref={cursorDot} />
 
+      {/* Mobile Menu */}
+      <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
+        {['About', 'Projects', 'Skills', 'Contact'].map(l => (
+          <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{l}</a>
+        ))}
+        <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="mobile-menu-resume" onClick={() => setMenuOpen(false)}>
+          Resume ↗
+        </a>
+      </div>
+
       {/* Nav */}
       <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
         <a href="#hero" className="nav-logo">AM</a>
         <ul className="nav-links">
           {['About', 'Projects', 'Skills', 'Contact'].map(l => (
-            <li key={l}><a href={`#${l.toLowerCase()}`}>{l}</a></li>
+            <li key={l}>
+              <a href={`#${l.toLowerCase()}`} className={activeSection === l.toLowerCase() ? 'active' : ''}>{l}</a>
+            </li>
           ))}
           <li>
             <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="btn-resume-nav">
@@ -919,6 +1181,9 @@ export default function Portfolio() {
             </a>
           </li>
         </ul>
+        <button className={`hamburger${menuOpen ? ' open' : ''}`} onClick={() => setMenuOpen(o => !o)} aria-label="Menu">
+          <span /><span /><span />
+        </button>
       </nav>
 
       {/* Hero */}
@@ -1005,8 +1270,14 @@ export default function Portfolio() {
             <div className="spotlight" />
             <div className="phone-strip">
               {featuredProject.images.map((src, i) => (
-                <div className="phone-frame" key={i}>
-                  <img src={src} alt={`GameVibe screen ${i + 1}`} />
+                <div className="phone-mockup" key={i}>
+                  <div className="phone-shell">
+                    <div className="phone-screen">
+                      <div className="phone-island" />
+                      <img src={src} alt={`GameVibe screen ${i + 1}`} />
+                      <div className="phone-indicator" />
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
@@ -1035,8 +1306,14 @@ export default function Portfolio() {
                 {p.images && (
                   <div className="phone-strip">
                     {p.images.map((src, j) => (
-                      <div className="phone-frame" key={j}>
-                        <img src={src} alt={`${p.title} screen ${j + 1}`} />
+                      <div className="phone-mockup" key={j}>
+                        <div className="phone-shell">
+                          <div className="phone-screen">
+                            <div className="phone-island" />
+                            <img src={src} alt={`${p.title} screen ${j + 1}`} />
+                            <div className="phone-indicator" />
+                          </div>
+                        </div>
                       </div>
                     ))}
                   </div>
