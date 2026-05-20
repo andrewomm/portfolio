@@ -931,9 +931,10 @@ const featuredProject = {
   num: '01',
   title: 'GameVibe',
   tagline: 'Find your Crowd. Find your Spot.',
-  desc: 'A full-stack mobile app that helps fans find the best spots to watch World Cup 2026 matches in Toronto. Features real-time venue discovery, geolocation, crowd-type matching, interactive map, saved spots, and team-aware match scheduling.',
+  desc: 'A free iOS app for football fans in the GTA. Shows 90+ bars and pubs across Toronto, Mississauga, Brampton, and beyond — sorted by crowd, vibe, and neighbourhood — so you always know the right place to watch every match. Set your team, find your bar, get directions in one tap. Live scores for all 104 World Cup 2026 matches included.',
   tags: ['React Native', 'Firebase', 'Geolocation', 'Maps API', 'UX Design'],
   images: ['/images/gamevibe-1.PNG', '/images/gamevibe-2.PNG', '/images/gamevibe-3.PNG'],
+  appStore: 'https://apps.apple.com/app/gamevibe',
   href: 'https://github.com/andrewomm',
 }
 
@@ -1279,9 +1280,14 @@ export default function Portfolio() {
               <div className="project-tags">
                 {featuredProject.tags.map(t => <span className="tag" key={t}>{t}</span>)}
               </div>
-              <a href={featuredProject.href} target="_blank" rel="noopener noreferrer" className="project-link">
-                View on GitHub <ArrowIcon />
-              </a>
+              <div style={{ display: 'flex', gap: '1.2rem', flexWrap: 'wrap', alignItems: 'center' }}>
+                <a href={featuredProject.appStore} target="_blank" rel="noopener noreferrer" className="project-link" style={{ color: 'var(--white)', fontWeight: 500 }}>
+                  App Store ↗
+                </a>
+                <a href={featuredProject.href} target="_blank" rel="noopener noreferrer" className="project-link">
+                  GitHub <ArrowIcon />
+                </a>
+              </div>
             </div>
           </div>
 
