@@ -620,13 +620,22 @@ const styles = `
     width: 225px;
     position: relative;
     border-radius: 50px;
-    background: linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 40%, #2c2c2e 70%, #3a3a3c 100%);
-    padding: 0;
+    background: linear-gradient(160deg,
+      #d0d0d0 0%,
+      #a8a8aa 15%,
+      #8e8e93 30%,
+      #6e6e73 50%,
+      #8e8e93 70%,
+      #b0b0b5 85%,
+      #d0d0d0 100%
+    );
+    padding: 7px;
     box-shadow:
-      0 0 0 1.5px rgba(255,255,255,0.15),
-      inset 0 0 0 1px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(255,255,255,0.35),
+      inset 0 0 0 1px rgba(0,0,0,0.25),
       0 40px 100px rgba(0,0,0,0.85),
-      0 12px 32px rgba(0,0,0,0.6);
+      0 12px 32px rgba(0,0,0,0.6),
+      inset 0 1px 0 rgba(255,255,255,0.5);
   }
   .phone-mockup:nth-child(2) .phone-shell { width: 250px; border-radius: 52px; }
 
@@ -634,34 +643,34 @@ const styles = `
   .phone-shell::before {
     content: '';
     position: absolute;
-    left: -3.5px;
-    top: 72px;
-    width: 3.5px;
-    height: 22px;
-    background: linear-gradient(to right, #2a2a2c, #3a3a3c);
-    border-radius: 2px 0 0 2px;
-    box-shadow: 0 30px 0 #2a2a2c, 0 60px 0 #2a2a2c;
+    left: -4px;
+    top: 80px;
+    width: 4px;
+    height: 26px;
+    background: linear-gradient(to right, #888, #bbb);
+    border-radius: 3px 0 0 3px;
+    box-shadow: 0 34px 0 #aaa, 0 34px 0 #aaa, 0 66px 0 #aaa;
   }
   /* right power button */
   .phone-shell::after {
     content: '';
     position: absolute;
-    right: -3.5px;
-    top: 96px;
-    width: 3.5px;
-    height: 56px;
-    background: linear-gradient(to left, #2a2a2c, #3a3a3c);
-    border-radius: 0 2px 2px 0;
+    right: -4px;
+    top: 104px;
+    width: 4px;
+    height: 60px;
+    background: linear-gradient(to left, #888, #bbb);
+    border-radius: 0 3px 3px 0;
   }
 
-  /* inner glass screen — edge to edge, radius matches shell */
+  /* inner glass screen */
   .phone-screen {
     background: #000;
-    border-radius: 50px;
+    border-radius: 44px;
     overflow: hidden;
     position: relative;
   }
-  .phone-mockup:nth-child(2) .phone-screen { border-radius: 52px; }
+  .phone-mockup:nth-child(2) .phone-screen { border-radius: 46px; }
 
   /* No Dynamic Island overlay — screenshots already include it */
   .phone-island { display: none; }
