@@ -602,7 +602,7 @@ const styles = `
     pointer-events: none;
   }
 
-  /* ── PHONE MOCKUP SHELL ── */
+  /* ── IPHONE 16 PRO MOCKUP ── */
   .phone-mockup {
     flex-shrink: 0;
     position: relative;
@@ -615,46 +615,47 @@ const styles = `
   .phone-strip:hover .phone-mockup:nth-child(2) { transform: rotate(0deg) translateY(-12px) scale(1.04); }
   .phone-strip:hover .phone-mockup:nth-child(3) { transform: rotate(2.5deg) translateY(10px) scale(1.02); }
 
-  /* outer shell */
+  /* titanium outer frame */
   .phone-shell {
-    width: 195px;
-    background: #1a1a1c;
-    border-radius: 44px;
-    padding: 10px;
-    box-shadow:
-      0 0 0 1px rgba(255,255,255,0.14),
-      0 0 0 2px rgba(0,0,0,0.8),
-      inset 0 0 0 1px rgba(255,255,255,0.06),
-      0 32px 80px rgba(0,0,0,0.75),
-      0 8px 24px rgba(0,0,0,0.5);
+    width: 190px;
     position: relative;
+    border-radius: 46px;
+    background: linear-gradient(145deg, #3a3a3c 0%, #1c1c1e 40%, #2c2c2e 70%, #3a3a3c 100%);
+    padding: 12px;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,0.18),
+      inset 0 0 0 1px rgba(0,0,0,0.6),
+      0 40px 100px rgba(0,0,0,0.8),
+      0 12px 32px rgba(0,0,0,0.6),
+      0 2px 8px rgba(0,0,0,0.4);
   }
-  .phone-mockup:nth-child(2) .phone-shell { width: 215px; }
+  .phone-mockup:nth-child(2) .phone-shell { width: 212px; }
 
-  /* side buttons */
+  /* left buttons: silent + volume */
   .phone-shell::before {
     content: '';
     position: absolute;
-    left: -3px;
-    top: 80px;
-    width: 3px;
-    height: 28px;
-    background: #2a2a2c;
+    left: -3.5px;
+    top: 72px;
+    width: 3.5px;
+    height: 22px;
+    background: linear-gradient(to right, #2a2a2c, #3a3a3c);
     border-radius: 2px 0 0 2px;
-    box-shadow: 0 36px 0 #2a2a2c, 0 68px 0 #2a2a2c;
+    box-shadow: 0 30px 0 #2a2a2c, 0 60px 0 #2a2a2c, 0 60px 0 #2a2a2c;
   }
+  /* right power button */
   .phone-shell::after {
     content: '';
     position: absolute;
-    right: -3px;
-    top: 100px;
-    width: 3px;
-    height: 50px;
-    background: #2a2a2c;
+    right: -3.5px;
+    top: 96px;
+    width: 3.5px;
+    height: 56px;
+    background: linear-gradient(to left, #2a2a2c, #3a3a3c);
     border-radius: 0 2px 2px 0;
   }
 
-  /* screen bezel */
+  /* inner glass screen */
   .phone-screen {
     background: #000;
     border-radius: 36px;
@@ -662,41 +663,39 @@ const styles = `
     position: relative;
   }
 
-  /* dynamic island */
+  /* Dynamic Island — pill shape */
   .phone-island {
     position: absolute;
-    top: 10px;
+    top: 11px;
     left: 50%;
     transform: translateX(-50%);
-    width: 88px;
-    height: 26px;
+    width: 80px;
+    height: 24px;
     background: #000;
-    border-radius: 20px;
+    border-radius: 50px;
     z-index: 10;
-    box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
   }
 
   .phone-screen img {
     width: 100%;
     height: auto;
     display: block;
-    object-fit: cover;
   }
 
-  /* home indicator */
+  /* home indicator bar */
   .phone-indicator {
-    height: 24px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #000;
+    background: inherit;
   }
   .phone-indicator::after {
     content: '';
     display: block;
-    width: 38%;
+    width: 34%;
     height: 4px;
-    background: rgba(255,255,255,0.22);
+    background: rgba(255,255,255,0.25);
     border-radius: 10px;
   }
 
@@ -857,11 +856,11 @@ const styles = `
       gap: 0.75rem;
       overflow: visible;
     }
-    .phone-shell { width: 100px; border-radius: 24px; padding: 6px; }
-    .phone-screen { border-radius: 20px; }
-    .phone-island { width: 50px; height: 16px; top: 6px; }
-    .phone-indicator { height: 16px; }
-    .phone-mockup:nth-child(2) .phone-shell { width: 114px; }
+    .phone-shell { width: 104px; border-radius: 26px; padding: 7px; }
+    .phone-screen { border-radius: 21px; }
+    .phone-island { width: 44px; height: 14px; top: 7px; border-radius: 20px; }
+    .phone-indicator { height: 14px; }
+    .phone-mockup:nth-child(2) .phone-shell { width: 118px; }
     .phone-mockup:nth-child(1) { transform: rotate(-5deg) translateY(14px); }
     .phone-mockup:nth-child(2) { transform: rotate(0deg) translateY(0); }
     .phone-mockup:nth-child(3) { transform: rotate(5deg) translateY(14px); }
@@ -893,21 +892,22 @@ const styles = `
     .hero-stats { gap: 1.2rem 0.8rem; }
     .hero-title { font-size: clamp(2.8rem, 16vw, 4.5rem); }
     .phone-strip { padding: 1.5rem 0.3rem 1.5rem; overflow: visible; gap: 0.5rem; }
-    .phone-shell { width: 84px; border-radius: 20px; padding: 5px; }
-    .phone-screen { border-radius: 16px; }
-    .phone-island { width: 42px; height: 13px; top: 5px; }
-    .phone-indicator { height: 14px; }
-    .phone-mockup:nth-child(2) .phone-shell { width: 96px; }
+    .phone-shell { width: 86px; border-radius: 22px; padding: 6px; }
+    .phone-screen { border-radius: 18px; }
+    .phone-island { width: 38px; height: 12px; top: 6px; border-radius: 20px; }
+    .phone-indicator { height: 13px; }
+    .phone-mockup:nth-child(2) .phone-shell { width: 98px; }
     .contact-link-val { font-size: 0.75rem; word-break: break-all; }
     .project-title { font-size: 1.4rem; }
   }
 
   @media (max-width: 360px) {
     .hero-title { font-size: clamp(2.4rem, 18vw, 3.5rem); }
-    .phone-shell { width: 72px; border-radius: 18px; padding: 4px; }
-    .phone-mockup:nth-child(2) .phone-shell { width: 82px; }
-    .phone-island { width: 36px; height: 11px; }
-    .phone-indicator { height: 12px; }
+    .phone-shell { width: 74px; border-radius: 19px; padding: 5px; }
+    .phone-screen { border-radius: 15px; }
+    .phone-mockup:nth-child(2) .phone-shell { width: 84px; }
+    .phone-island { width: 32px; height: 10px; top: 5px; border-radius: 20px; }
+    .phone-indicator { height: 11px; }
     .skills-grid { grid-template-columns: 1fr; }
   }
 `
@@ -1231,7 +1231,7 @@ export default function Portfolio() {
           ))}
         </h2>
         <div className="about-grid">
-          <div className="about-text" ref={addReveal} style={{ opacity: 0, transform: 'translateY(32px)', transition: 'opacity 0.7s ease, transform 0.7s ease' }}>
+          <div className="about-text reveal" ref={addReveal}>
             <p>I spent years <strong>coaching athletes and designing fitness programs</strong>, work that's fundamentally about reading people, building systems, and iterating until something works. That's exactly how I build software now.</p>
             <p>I'm in the <strong>Applied AI Solutions postgrad program at George Brown College</strong>, where I've built computer vision tools, React Native apps, and ML pipelines. I care about making AI that's actually usable and not just technically functional.</p>
             <p>My background in <strong>real estate presentation design and UX</strong> means I think about how things look and feel as much as how they work under the hood. That combination is rare and I lean into it.</p>
