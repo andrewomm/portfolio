@@ -760,6 +760,57 @@ const styles = `
   .skill-list li:hover { color: var(--text); transform: translateX(4px); }
   .skill-list li::before { content: ''; width: 3px; height: 3px; border-radius: 50%; background: var(--accent2); flex-shrink: 0; }
 
+  /* ── CREDENTIALS / DOCS ── */
+  .docs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+  .doc-card {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.3s;
+  }
+  .doc-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--slate);
+    transform: translateX(-101%);
+    transition: transform 0.4s cubic-bezier(0.76,0,0.24,1);
+    z-index: 0;
+  }
+  .doc-card:hover { border-color: var(--accent2); }
+  .doc-card:hover::before { transform: translateX(0); }
+  .doc-card-icon {
+    width: 34px;
+    height: 34px;
+    color: var(--accent2);
+    position: relative;
+    z-index: 1;
+  }
+  .doc-card-icon svg { width: 100%; height: 100%; }
+  .doc-card-body { position: relative; z-index: 1; flex: 1; }
+  .doc-card-title { font-size: 0.95rem; font-weight: 500; color: var(--text); margin-bottom: 0.3rem; transition: color 0.3s; }
+  .doc-card:hover .doc-card-title { color: var(--white); }
+  .doc-card-sub { font-family: var(--font-mono); font-size: 0.68rem; color: var(--text3); line-height: 1.5; }
+  .doc-card-arrow {
+    align-self: flex-end;
+    color: var(--accent2);
+    font-size: 1rem;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s;
+  }
+  .doc-card:hover .doc-card-arrow { transform: translate(4px,-4px); }
+
   /* ── CONTACT ── */
   .contact-inner { max-width: 680px; }
   .contact-inner p { font-size: 1rem; color: var(--text2); line-height: 1.85; margin-bottom: 1.8rem; }
@@ -873,6 +924,8 @@ const styles = `
     .projects-secondary { grid-template-columns: 1fr; }
     .skills-grid { grid-template-columns: 1fr 1fr; }
     .skill-group { padding: 1.4rem; }
+    .docs-grid { grid-template-columns: 1fr; }
+    .doc-card { padding: 1.4rem; }
 
     .contact-link { padding: 1.2rem 1.2rem; }
     .contact-link-val { font-size: 0.82rem; }
@@ -1032,7 +1085,7 @@ export default function Portfolio() {
 
   // Scroll detection + active section tracking
   useEffect(() => {
-    const sections = ['hero', 'about', 'projects', 'skills', 'contact']
+    const sections = ['hero', 'about', 'projects', 'skills', 'credentials', 'contact']
     const onScroll = () => {
       setScrolled(window.scrollY > 40)
       // find which section is in view
@@ -1158,7 +1211,7 @@ export default function Portfolio() {
 
       {/* Mobile Menu */}
       <div className={`mobile-menu${menuOpen ? ' open' : ''}`}>
-        {['About', 'Projects', 'Skills', 'Contact'].map(l => (
+        {['About', 'Projects', 'Skills', 'Credentials', 'Contact'].map(l => (
           <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{l}</a>
         ))}
         <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="mobile-menu-resume" onClick={() => setMenuOpen(false)}>
@@ -1170,7 +1223,7 @@ export default function Portfolio() {
       <nav className={`nav${scrolled ? ' scrolled' : ''}`}>
         <a href="#hero" className="nav-logo">AM</a>
         <ul className="nav-links">
-          {['About', 'Projects', 'Skills', 'Contact'].map(l => (
+          {['About', 'Projects', 'Skills', 'Credentials', 'Contact'].map(l => (
             <li key={l}>
               <a href={`#${l.toLowerCase()}`} className={activeSection === l.toLowerCase() ? 'active' : ''}>{l}</a>
             </li>
@@ -1360,9 +1413,52 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* Credentials */}
+      <section id="credentials">
+        <p className="section-label" ref={addLabel}>// 04 — Credentials</p>
+        <h2 className="section-title">
+          {'PROOF OF WORK'.split(' ').map((w, i) => (
+            <span key={i} className="title-word" ref={addWord}>{w}</span>
+          ))}
+        </h2>
+        <div className="docs-grid reveal" ref={addReveal}>
+          {[
+            {
+              title: 'Résumé',
+              sub: 'Updated August 2026',
+              href: '/resume.pdf',
+            },
+            {
+              title: 'Ontario College Advanced Diploma',
+              sub: 'Interaction Design & Development — George Brown College',
+              href: '/diploma.pdf',
+            },
+            {
+              title: 'Academic Transcript',
+              sub: 'George Brown College',
+              href: '/transcript.pdf',
+            },
+          ].map((doc) => (
+            <a key={doc.title} href={doc.href} target="_blank" rel="noopener noreferrer" className="doc-card">
+              <div className="doc-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                  <path d="M14 2v6h6"/>
+                </svg>
+              </div>
+              <div className="doc-card-body">
+                <div className="doc-card-title">{doc.title}</div>
+                <div className="doc-card-sub">{doc.sub}</div>
+              </div>
+              <span className="doc-card-arrow">↗</span>
+            </a>
+          ))}
+        </div>
+      </section>
+
       {/* Contact */}
       <section id="contact">
-        <p className="section-label" ref={addLabel}>// 04 — Contact</p>
+        <p className="section-label" ref={addLabel}>// 05 — Contact</p>
         <h2 className="section-title">
           {"LET'S TALK".split(' ').map((w, i) => (
             <span key={i} className="title-word" ref={addWord}>{w}</span>
